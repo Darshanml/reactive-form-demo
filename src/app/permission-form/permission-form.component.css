@@ -1,0 +1,42 @@
+.grid-form {
+  display: flex;
+  position: relative;
+  justify-content: left;
+  text-align: center;
+  margin: 4rem 0 0 2rem;
+  height: 20vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-left: 4rem;
+  margin-top: 0.5rem;
+}
+.mat-table {
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-form {
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem;
+    height: auto;
+  }
+
+  .button-container {
+    justify-content: center;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .mat-table-wrapper body{
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+  } 
+}

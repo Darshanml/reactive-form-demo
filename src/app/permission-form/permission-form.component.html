@@ -1,0 +1,74 @@
+<div class="container">
+  <h1><b>{{ formTitle }}</b></h1>
+      <form [formGroup]="permissionForm" (ngSubmit)="onSubmit()" class="grid-form">
+        <div class="row">
+          <div class="col">
+            <mat-form-field>
+              <mat-label>Permission Name</mat-label>
+              <input matInput type="text" id="permissionName" formControlName="permissionName">
+              <mat-error *ngIf="permissionForm.get('permissionName')?.invalid && permissionForm.get('permissionName')?.touched">
+                Permission Name is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field>
+              <mat-label>Permission Description</mat-label>
+              <textarea matInput id="permissionDescription" formControlName="permissionDescription"></textarea>
+              <mat-error *ngIf="permissionForm.get('permissionDescription')?.invalid && permissionForm.get('permissionDescription')?.touched">
+                Permission Description is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+              <div class="button-container">
+                <button mat-raised-button color="primary" type="submit" [disabled]="permissionForm.invalid">{{ isEditing ? 'Update' : 'Create' }}</button>
+                <button mat-raised-button color="warn" type="button" (click)="onReset()">Cancel</button>
+              </div>
+            </div>
+        </div>
+      </form>
+
+      <div class="mat-table-wrapper">
+      <mat-table [dataSource]="permissions" class="mat-table">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>
+            Id
+            <button mat-icon-button (click)="toggleSortDirection()">
+              <mat-icon>{{ sortDirection === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}</mat-icon>
+            </button>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let permission">{{ permission.id }}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="permissionName">
+          <mat-header-cell *matHeaderCellDef>Permission Name</mat-header-cell>
+          <mat-cell *matCellDef="let permission">{{ permission.permissionName }}</mat-cell>
+        </ng-container>
+      
+        <ng-container matColumnDef="permissionDescription">
+          <mat-header-cell *matHeaderCellDef>Permission Description</mat-header-cell>
+          <mat-cell *matCellDef="let permission">{{ permission.permissionDescription }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let permission">
+            <button mat-icon-button color="primary" (click)="editPermission(permission)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deletePermission(permission.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="['id', 'permissionName', 'permissionDescription', 'actions']"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: ['id', 'permissionName', 'permissionDescription', 'actions']"></mat-row>
+      </mat-table>
+    </div>
+</div>

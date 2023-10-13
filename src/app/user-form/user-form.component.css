@@ -1,0 +1,37 @@
+
+  .grid-form {
+    display: grid;
+    grid-gap: 2.5rem;
+    position: relative;
+    text-align: left;
+    align-items: center;
+    margin-top: 4rem;
+    height: 40vh;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-right: 10rem;
+  }
+
+  .mat-table{
+    margin-top: 4rem;
+  }
+
+/* Add media queries for mobile phones */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 0 1rem; /* Adjust container padding for mobile */
+  }
+
+  .grid-form {
+    grid-template-columns: 1fr; /* Display form fields in a single column */
+    height: auto; /* Adjust the form height to accommodate content */
+  }
+
+  .button-container {
+    padding-right: 1rem; /* Adjust button container padding for mobile */
+  }
+}

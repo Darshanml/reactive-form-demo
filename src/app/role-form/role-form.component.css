@@ -1,0 +1,18 @@
+.grid-form {
+  display: flex;
+  position: relative;
+  justify-content: left;
+  text-align: center;
+  margin: 4rem 0 0 2rem;
+  height: 20vh;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-left: 4rem;
+  margin-top: 0.5rem;
+}
+
+

@@ -1,0 +1,74 @@
+<div class="container" >
+  <h1><b>{{ formTitle }}</b></h1>
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit()" class="grid-form">
+    <div class="row">
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Role Name</mat-label>
+          <input matInput type="text" id="roleName" formControlName="roleName" required>
+          <mat-error *ngIf="roleForm.get('roleName')?.invalid && roleForm.get('roleName')?.touched && roleForm.get('roleName')?.hasError('required')">
+            Role Name is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col">
+        <mat-form-field>
+          <mat-label>Role Description</mat-label>
+          <textarea matInput id="roleDescription" formControlName="roleDescription" required></textarea>
+          <mat-error *ngIf="roleForm.get('roleDescription')?.invalid && roleForm.get('roleDescription')?.touched && roleForm.get('roleDescription')?.hasError('required')">
+            Role Description is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="button-container">
+          <button mat-raised-button color="primary" type="submit" [disabled]="roleForm.invalid">{{ isEditing ? 'Update Role' : 'Create Role' }}</button>
+          <button mat-raised-button color="warn" type="button" (click)="onReset()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <mat-table [dataSource]="roles" class="mat-table">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>
+        Id
+        <button mat-icon-button (click)="toggleSortDirection()">
+          <mat-icon>{{ sortDirection === 'asc' ? 'arrow_drop_up' : 'arrow_drop_down' }}</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let role">{{ role.id }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="roleName">
+      <mat-header-cell *matHeaderCellDef>Role Name</mat-header-cell>
+      <mat-cell *matCellDef="let role">{{ role.roleName }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="roleDescription">
+      <mat-header-cell *matHeaderCellDef>Role Description</mat-header-cell>
+      <mat-cell *matCellDef="let role">{{ role.roleDescription }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let role">
+        <button mat-icon-button color="primary" (click)="editRole(role)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteRole(role.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    
+  
+    <mat-header-row *matHeaderRowDef="['id', 'roleName', 'roleDescription', 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['id', 'roleName', 'roleDescription', 'actions']"></mat-row>
+  </mat-table>
+</div>
+

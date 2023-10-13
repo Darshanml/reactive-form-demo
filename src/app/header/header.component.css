@@ -1,0 +1,51 @@
+
+  
+  .img-fluid {
+    height: 10%;
+    width: 20%;
+    margin-left: 1.7rem;
+  }
+  
+  .mat-icon {
+    color: white;
+  }
+  
+  .mat-sidenav-container {
+    height: 82vh;
+  }
+  
+  mat-sidenav-content {
+    padding: 20px;
+    
+  }
+
+  .active-link {
+    background-color: #e1f5fe;
+  }
+
+  mat-sidenav {
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-toolbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 767px) {
+    mat-sidenav-container {
+      flex-direction: column-reverse;
+      height: 100vh;
+    }
+  
+    mat-sidenav {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+    }
+  
+    mat-sidenav-content {
+      margin-top: 64px;
+   /* Adjust this value based on your toolbar height */
+    }
+  }
